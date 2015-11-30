@@ -13,6 +13,9 @@ Includes `score.cpp`, which implements the `Note` and `MultipleNotes` (chord) cl
 
 This repository contains a **working example** of the widget. Compile and run `appmain.cpp` to see it run right away.
 
+## Screenshots
+![wxPianoControl](https://raw.githubusercontent.com/petru-dimitriu/wxPianoControl/master/screen1.png)
+
 ## Tips
 * In order to select multiple notes and build chords: press and hold `Shift`, click the keys on the piano one by one, releasing the `Shift` key before the last one.
 * To view an options menu, right click anywhere within the control.
@@ -72,9 +75,6 @@ sets which notation to use for note names
 * `Note(RE,5)` produces D5
 * `Note::Tell()` returns a string with the note's name in a certain notation, optionally including the octave, accidentals (#, b, n) according to a certain `Signature`. 
 * `Signature` objects contain signatures in the form of an array of 7 floating points, where `0.5` means the respective note has a sharp, `-0.5` means the note has a flat, and `0` means the note is natural.
-
-## Screenshots
-![wxPianoControl](https://raw.githubusercontent.com/petru-dimitriu/wxPianoControl/master/screen1.png)
 
 ## License
 I hereby release this to the public domain. I don't mind if you credit me, though.
