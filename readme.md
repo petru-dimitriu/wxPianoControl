@@ -2,13 +2,13 @@
 A simple Piano widget for wxWidgets. Tested on wxWidgets 2.9.*
 
 ## Overview
-Widget which shows a piano with notes in any useful range, supports clicking keys as well as using the keyboard to play it, and sends appropriate events accordingly.
+Widget which displays a piano with notes in any useful range, supports clicking keys as well as using the keyboard to play it, and sends appropriate events accordingly.
 
 
 Supports showing note names on the keys according to 4 notations: Classic (Do, Re, ...), Byzantine (Ni, Pa, ...), Greek Byzantine (Νη, Πα,...) and Western (C, D, ...).
 
 
-Includes `score.cpp`, which implements the `Note` and `MultipleNotes` (chord) classes in the `Music` namespace, that the widgets uses to pass and receive note information.
+Includes `score.cpp`, which implements the `Note` and `MultipleNotes` (chord) classes in the `Music` namespace, that the widget uses to pass and receive note information.
 
 
 This repository contains a **working example** of the widget. Compile and run `appmain.cpp` to see it run right away.
@@ -17,17 +17,18 @@ This repository contains a **working example** of the widget. Compile and run `a
 ![wxPianoControl](https://raw.githubusercontent.com/petru-dimitriu/wxPianoControl/master/screen1.png)
 
 ## Tips
-* In order to select multiple notes and build chords: press and hold `Shift`, click the keys on the piano one by one, releasing the `Shift` key before the last one.
+* To select multiple notes and build chords: press and hold `Shift`, click the keys on the piano one by one, releasing the `Shift` key before the last one.
 * To view an options menu, right click anywhere within the control.
 
 ## Getting started & API
 After you include `pianoctl.cpp` and `pianoctl.h` in your project, the following line of code will create a piano with notes ranging from C2 to B6:
+
 `wxPianoControl* Piano = new wxPianoControl(this,1234,5,5,1000,250,Note(DO,2),Note(DO,7));`
 
 Note that DO, RE, ... SI are `#define`s which resolve to 0, 1, ... 6.
 
 ### Events
-The Piano widget sends the following `wxCommandEvent`s:
+The Piano widget sends the following wxCommandEvents:
 
 * `EVT_PIANO_KEY_DOWN`, when the user presses a key, either by clicking it or by pressing its corresponding key on the computer keyboard
 * `EVT_PIANO_KEY_UP`, when the user releases a key, either by releasing the left mouse button or by releasing the corresponding key on the computer keyboard
@@ -52,8 +53,7 @@ The events' ClientData contains a `Music::Note` object - for `KEY_DOWN` and `KEY
 * `wxColour GetBlackKeyColourHovered()`
 
 #### Setters
-* `void SetNoteNames(char Names)`
-sets which notation to use for note names
+* `void SetNoteNames(char Names)` sets which notation to use for note names
 * `void SetOctave(bool octave)` sets whether or not to show the octave besides note names
 * `void SetPlayFromKeyboard(bool play)` sets whether or not the piano allows being played using the computer keyboard
 * `void SetShowNoteNames(bool)` sets whether or not note names should be drawn on the keys
