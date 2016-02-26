@@ -33,6 +33,8 @@ The Piano widget sends the following wxCommandEvents:
 * `EVT_PIANO_KEY_DOWN`, when the user presses a key, either by clicking it or by pressing its corresponding key on the computer keyboard
 * `EVT_PIANO_KEY_UP`, when the user releases a key, either by releasing the left mouse button or by releasing the corresponding key on the computer keyboard
 * `EVT_PIANO_NOTE_RECEIVED`, when the user finishes either pressing a key or building a chord.
+* `EVT_PIANO_KEY_HOVERON`, when the user hovers the mouse pointer over a key
+* `EVT_PIANO_KEY_HOVEROFF`, when the user no longer hovers the mouse pointer over a key
 
 Note that `EVT_PIANO_KEY_UP` and `EVT_PIANO_NOTE_RECEIVED` are both sent when a user presses and releases a single key.
 
