@@ -10,6 +10,8 @@ MainWindow::MainWindow(wxWindow* parent,wxWindowID id) : wxFrame(NULL,wxID_ANY,"
     Connect(1234,EVT_PIANO_NOTE_RECEIVED,(wxObjectEventFunction)&MainWindow::NoteReceived);
     Connect(1234,EVT_PIANO_KEY_DOWN,(wxObjectEventFunction)&MainWindow::KeyPressed);
     Connect(1234,EVT_PIANO_KEY_UP,(wxObjectEventFunction)&MainWindow::KeyReleased);
+    Connect(1234,EVT_PIANO_KEY_HOVERON,(wxObjectEventFunction)&MainWindow::KeyHoverOn);
+    Connect(1234,EVT_PIANO_KEY_HOVEROFF,(wxObjectEventFunction)&MainWindow::KeyHoverOff);
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +36,20 @@ void MainWindow::KeyReleased(wxCommandEvent &event)
     Note* n = (Note*)(event.GetClientData());
     *(MessageViewer->Box) << wxString("KEY RELEASED: ") << n->Tell(NullSignature,CLASSIC_NOTE_NAMES,1,1) << "\n";
 }
+
+void MainWindow::KeyHoverOn(wxCommandEvent &event)
+{
+    Note* n = (Note*)(event.GetClientData());
+    *(MessageViewer->Box) << wxString("KEY HOVERON: ") << n->Tell(NullSignature,CLASSIC_NOTE_NAMES,1,1) << "\n";
+}
+
+void MainWindow::KeyHoverOff(wxCommandEvent &event)
+{
+    Note* n = (Note*)(event.GetClientData());
+    *(MessageViewer->Box) << wxString("KEY HOVEROFF ") << "\n";
+}
+
+
 
 MessageWindow::MessageWindow() : wxFrame(NULL,wxID_ANY,"Messages",wxDefaultPosition,wxSize(200,200))
 {

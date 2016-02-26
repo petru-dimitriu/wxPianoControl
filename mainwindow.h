@@ -24,6 +24,8 @@ class MainWindow: public wxFrame
             void NoteReceived(wxCommandEvent &event);
             void KeyPressed(wxCommandEvent &event);
             void KeyReleased(wxCommandEvent &event);
+            void KeyHoverOn(wxCommandEvent &event);
+            void KeyHoverOff(wxCommandEvent &event);
 
 };
 

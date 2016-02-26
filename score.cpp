@@ -79,6 +79,11 @@ namespace Music
         return c;
     }
 
+    void Note::operator=(float t)
+    {
+        tones = t;
+    }
+
     void Note::operator+=(float t)
     {
         tones += t;
@@ -168,31 +173,31 @@ namespace Music
 
     void Score::AddNote(MultipleNotes* note)
     {
-        clusters.push_back(note);
+        MultipleNotess.push_back(note);
         NumberOfThings++;
         Saved = 0;
     }
 
     void Score::InsertNote(int x, MultipleNotes* note)
     {
-        std::vector<MultipleNotes*>::iterator i = clusters.begin();
-        clusters.insert(i+x,note);
+        std::vector<MultipleNotes*>::iterator i = MultipleNotess.begin();
+        MultipleNotess.insert(i+x,note);
         NumberOfThings++;
         Saved = 0;
     }
 
     void Score::DeleteNote(int x, bool destroy)
     {
-        if (destroy) delete clusters[x];
-        std::vector<MultipleNotes*>::iterator i = clusters.begin();
-        clusters.erase(i+x);
+        if (destroy) delete MultipleNotess[x];
+        std::vector<MultipleNotes*>::iterator i = MultipleNotess.begin();
+        MultipleNotess.erase(i+x);
         NumberOfThings--;
         Saved = 0;
     }
 
     void Score::Clear()
     {
-        clusters.clear();
+        MultipleNotess.clear();
         NumberOfThings=0;
         Saved = 0;
     }
@@ -331,7 +336,7 @@ namespace Music
 
     std::wstring Score::TellNote(int n, bool withOctave, bool withAccidental, const Signature sig)
     {
-        return clusters[n]->Tell(sig,Name,withOctave,withAccidental);
+        return MultipleNotess[n]->Tell(sig,Name,withOctave,withAccidental);
     }
 
     double Score::GetTime(int x)
@@ -351,13 +356,13 @@ namespace Music
         if (x==-1)
             x = NumberOfThings;
         for (int i=0;i<x;i++)
-            beats += clusters[i]->notes[0].duration*4;
+            beats += MultipleNotess[i]->notes[0].duration*4;
         return beats;
     }
 
     double Score::CalculateSeconds(int n,float tempo)
     {
-        double a = 60/tempo*4*clusters[n]->notes[n].duration;
+        double a = 60/tempo*4*MultipleNotess[n]->notes[n].duration;
         return a;
     }
 
@@ -367,11 +372,11 @@ namespace Music
         CopySignature(s,NullSignature);
         for (i=0;i<n;i++)
         {
-            if (clusters[i]->IsSignature())
+            if (MultipleNotess[i]->IsSignature())
                 gasit = i;
         }
         if (gasit!=-1)
-            clusters[gasit]->MakeSignature(s);
+            MultipleNotess[gasit]->MakeSignature(s);
     }
 
     std::wstring Note::Tell(const Signature sig, char Name, bool withOctave, bool withAccidental)

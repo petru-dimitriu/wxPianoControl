@@ -86,6 +86,7 @@ void wxPianoControl::paintEvent(wxPaintEvent &evt)
     dc.SetBackground(wxBrush(wxColour(255,255,255)));
     dc.Clear();
     int x=10, y=10;
+    HoveredNote = -1;
     Note i;
     dc.SetBrush(wxBrush(WhiteKeyColour));
     dc.SetPen(wxPen(BlackKeyColour));
@@ -160,9 +161,27 @@ void wxPianoControl::paintEvent(wxPaintEvent &evt)
 void wxPianoControl::mouseMoved(wxMouseEvent &event)
 {
     mousePos = event.GetPosition();
+    Note OldHoveredNote = HoveredNote;
     SetFocusIgnoringChildren();
     Refresh();
     Update();
+    if (HoveredNote != OldHoveredNote)
+    {
+        if (HoveredNote != -1)
+        {
+            wxCommandEvent e(EVT_PIANO_KEY_HOVERON,GetId());
+            e.SetClientData(&HoveredNote);
+            e.SetEventObject(this);
+            GetEventHandler()->ProcessEvent(e);
+        }
+        else
+        {
+            wxCommandEvent e(EVT_PIANO_KEY_HOVEROFF,GetId());
+            //e.SetClientData(&HoveredNote);
+            e.SetEventObject(this);
+            GetEventHandler()->ProcessEvent(e);
+        }
+    }
 }
 
 void wxPianoControl::leftDown(wxMouseEvent &event)

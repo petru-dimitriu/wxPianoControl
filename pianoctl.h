@@ -21,8 +21,10 @@
 #include <map>
 
 #define EVT_PIANO_NOTE_RECEIVED   5001
-#define EVT_PIANO_KEY_DOWN  5002
-#define EVT_PIANO_KEY_UP    5003
+#define EVT_PIANO_KEY_DOWN        5002
+#define EVT_PIANO_KEY_UP          5003
+#define EVT_PIANO_KEY_HOVERON     5004
+#define EVT_PIANO_KEY_HOVEROFF    5005
 
 using namespace Music;
 

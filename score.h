@@ -52,12 +52,13 @@ namespace Music
     float AwayFromC(int,const Signature);
     float GetTones(int note, int octave = 4, const Signature sig = NullSignature);
 
-    class Note
+        class Note
     {
         public:
             float tones, duration;
             long flags;
             void operator+= (float);
+            void operator= (float) ;
 
             Note(Note*);
             Note(char note, char octave, float d = 0.25,const Signature = NullSignature, const long f = 0);
@@ -71,6 +72,7 @@ namespace Music
             bool operator> (Note) const;
             bool operator== (Note) const;
             bool operator!= (Note) const;
+
             std::wstring Tell(const Signature sig = NullSignature, char Name = 0, bool withOctave = 0, bool withAccidental = 0);
     };
 
@@ -106,7 +108,7 @@ namespace Music
             bool Saved = 1;
             float tempo = 80;
             Signature sig;
-            std::vector<MultipleNotes*> clusters;
+            std::vector<MultipleNotes*> MultipleNotess;
             std::wstring title, TitleFont;
             char Name = 0, clefs = 0;
 
